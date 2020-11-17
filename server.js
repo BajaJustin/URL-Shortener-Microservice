@@ -26,10 +26,7 @@ app.get('/', function(req, res) {
 app.get('/api/shorturl/:shorturl', (req, res) => {
   var shorturl = req.params.shorturl;
 
-  console.log(sites)
-  console.log(sites.indexOf(sites[shorturl]))
-
-  // Check if user entered a shorturl
+  // Check if user entered a valid shorthand url
   if(!shorturl || sites.indexOf(sites[shorturl]) === -1){
     res.json({
       error: 'No short URL found for the given input'
@@ -48,22 +45,22 @@ app.post('/api/shorturl/new', function(req, res) {
   var url;
   // Validate url input
   try{
-    url = new URL(req.body.url)
+    url = new URL(req.body.url);
+
+    // If website isn't in the array, add it
+    if(!sites.includes(url.href)){
+      sites.push(url.href);
+    }
+    
+    res.json({
+      original_url: url,
+      short_url: sites.indexOf(url.href)
+    })
   }catch(_){
     res.json({
       error: 'Invalid url'
     })
   }
-  // If website isn't in the array, add it
-  if(!sites.includes(url.href)){
-    sites.push(url.href);
-  }
-  
-  res.json({
-    original_url: url,
-    short_url: sites.indexOf(url.href)
-  })
-  
 });
 
 app.listen(port, function() {
