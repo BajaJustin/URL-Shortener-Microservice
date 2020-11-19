@@ -9,10 +9,21 @@
       href="https://cdn.freecodecamp.org/universal/favicons/favicon-16x16.png"
     />
     <link href="/public/style.css" rel="stylesheet" type="text/css" />
+
+    <style>
+      .example {
+        margin-bottom: 0;
+      }
+      main {
+        margin-top: 0;
+      }
+    </style>
   </head>
 
   <body>
     <h1>URL Shortener Microservice</h1>
+    <h3>Must be a valid url:</h3>
+    <p class="example">www.example.com</p>
     <main>
       <section>
         <form action="api/shorturl/new" method="POST">
@@ -23,10 +34,14 @@
             <input type="submit" value="POST URL" />
           </fieldset>
         </form>
+        <h2>Example Usage</h2>
+        <a href="/api/shorturl/WyOpnD4i1">[this_project_url]/api/shorturl/WyOpnD4i1</a>
+        <h2>Will Redirect to</h2>
+        <p>https://www.freecodecamp.org/</p>
       </section>
     </main>
     <footer>
-      <p>By <a href="https://www.freecodecamp.org/">freeCodeCamp</a></p>
+      <p>By Justin Baja</p>
     </footer>
   </body>
 </html>
